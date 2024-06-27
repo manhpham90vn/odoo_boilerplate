@@ -1,0 +1,39 @@
+services:
+  nginx:
+    image: manhpv151090/odoo_nginx:latest
+    container_name: learn_odoo_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./logs:/var/log/nginx
+    depends_on:
+      - odoo
+
+  odoo:
+    image: manhpv151090/odoo_17:latest
+    container_name: learn_odoo_odoo
+    depends_on:
+      - db
+    restart: unless-stopped
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./extra-addons:/home/ubuntu/extra-addons
+      - ./etc:/home/ubuntu/etc:ro
+
+  db:
+    image: postgres:16.2
+    restart: unless-stopped
+    container_name: learn_odoo_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=odoo_user
+      - POSTGRES_PASSWORD=odoo_password
+      - POSTGRES_DB=postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
