@@ -1,6 +1,8 @@
 services:
   nginx:
-    image: manhpv151090/odoo_nginx:latest
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
     container_name: learn_odoo_nginx
     restart: unless-stopped
     ports:
@@ -11,7 +13,9 @@ services:
       - odoo
 
   odoo:
-    image: manhpv151090/odoo_17:latest
+    build:
+      context: .
+      dockerfile: docker/odoo/Dockerfile
     container_name: learn_odoo_odoo
     depends_on:
       - db

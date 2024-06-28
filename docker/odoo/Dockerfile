@@ -60,7 +60,7 @@ RUN apt update && \
     build-essential
 
 # Create the user
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1001 ubuntu
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 ubuntu
 WORKDIR /home/ubuntu/app
 USER ubuntu
 
