@@ -1,0 +1,47 @@
+<odoo>
+  <data>
+    <record id="wife_view_tree" model="ir.ui.view">
+      <field name="name">wife.tree</field>
+      <field name="model">wife</field>
+      <field name="arch" type="xml">
+        <tree string="Players Wife">
+          <field name="name"/>
+          <field name="country"/>
+          <field name="day_of_birth"/>
+          <field name="player_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="wife_view_form" model="ir.ui.view">
+      <field name="name">wife.form</field>
+      <field name="model">wife</field>
+      <field name="arch" type="xml">
+        <form string="Player Wife">
+          <sheet>
+            <field name="image" widget="image" class="oe_avatar"/>
+            <div class="oe_title">
+              <h1>
+                <field name="name"/>
+              </h1>
+            </div>
+            <group>
+                <field name="country"/>
+                <field name="day_of_birth"/>
+                <field name="player_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="player_wife_action" model="ir.actions.act_window">
+      <field name="name">Wife</field>
+      <field name="res_model">wife</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="player_wife_menu" name="Wife" groups="group_wife_user"/>
+    <menuitem id="player_wife_menu_sub" name="Wife" parent="player_wife_menu" action="player_wife_action" groups="group_wife_user"/>
+  </data>
+</odoo>

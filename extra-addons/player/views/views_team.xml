@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+    <record id="team_view_tree" model="ir.ui.view">
+      <field name="name">team.tree</field>
+      <field name="model">team</field>
+      <field name="arch" type="xml">
+        <tree string="Teams">
+          <field name="name"/>
+          <field name="country"/>
+          <field name="stadium"/>
+          <field name="founded"/>
+          <field name="coach"/>
+          <field name="captain"/>
+          <field name="players"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="team_view_form" model="ir.ui.view">
+      <field name="name">team.form</field>
+      <field name="model">team</field>
+      <field name="arch" type="xml">
+        <form string="Team">
+          <sheet>
+            <field name="image" widget="image" class="oe_avatar"/>
+            <div class="oe_title">
+              <h1>
+                <field name="name"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <field name="country"/>
+                <field name="stadium"/>
+                <field name="founded"/>
+              </group>
+              <group>
+                <field name="coach"/>
+                <field name="captain"/>
+                <field name="players"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="team_action" model="ir.actions.act_window">
+      <field name="name">Teams</field>
+      <field name="res_model">team</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="team_menu" name="Teams" groups="group_team_user"/>
+    <menuitem id="team_menu_sub" name="Teams" parent="team_menu" action="team_action" groups="group_team_user"/>
+  </data>
+</odoo>

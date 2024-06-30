@@ -23,8 +23,12 @@ Long description of module's purpose
     # always loaded
     'data': [
         'security/player_security.xml',
+        'security/player_wife_security.xml',
+        'security/team_security.xml',
         'security/ir.model.access.csv',
-        'views/views.xml'
+        'views/views_player.xml',
+        'views/views_player_wife.xml',
+        'views/views_team.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

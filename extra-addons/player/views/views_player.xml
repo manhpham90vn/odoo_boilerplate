@@ -12,6 +12,7 @@
           <field name="position" groups="player.group_player_manager"/>
           <field name="height"/>
           <field name="weight"/>
+          <field name="wife"/>
         </tree>
       </field>
     </record>
@@ -38,6 +39,7 @@
                 <field name="position" groups="player.group_player_manager"/>
                 <field name="height"/>
                 <field name="weight"/>
+                <field name="wife"/>
               </group>
             </group>
           </sheet>
