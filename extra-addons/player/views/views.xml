@@ -1,60 +1,57 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="player.list">
-      <field name="name">Player list</field>
-      <field name="model">player.player</field>
+    <record id="player_view_tree" model="ir.ui.view">
+      <field name="name">player.tree</field>
+      <field name="model">player</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree string="Players">
           <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+          <field name="country"/>
+          <field name="gender"/>
+          <field name="day_of_birth"/>
+          <field name="position" groups="player.group_player_manager"/>
+          <field name="height"/>
+          <field name="weight"/>
         </tree>
       </field>
     </record>
--->
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="player.action_window">
-      <field name="name">Player window</field>
-      <field name="res_model">player.player</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="player.action_server">
-      <field name="name">Player server</field>
-      <field name="model_id" ref="model_player_player"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
+    <record id="player_view_form" model="ir.ui.view">
+      <field name="name">player.form</field>
+      <field name="model">player</field>
+      <field name="arch" type="xml">
+        <form string="Player">
+          <sheet>
+            <field name="image" widget="image" class="oe_avatar"/>
+            <div class="oe_title">
+              <h1>
+                <field name="name"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <field name="country"/>
+                <field name="gender"/>
+                <field name="day_of_birth"/>
+              </group>
+              <group>
+                <field name="position" groups="player.group_player_manager"/>
+                <field name="height"/>
+                <field name="weight"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
       </field>
     </record>
--->
 
-    <!-- Top menu item -->
-<!--
-    <menuitem name="Player" id="player.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="player.menu_1" parent="player.menu_root"/>
-    <menuitem name="Menu 2" id="player.menu_2" parent="player.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="player.menu_1_list" parent="player.menu_1"
-              action="player.action_window"/>
-    <menuitem name="Server to list" id="player" parent="player.menu_2"
-              action="player.action_server"/>
--->
+    <record id="player_action" model="ir.actions.act_window">
+      <field name="name">Players</field>
+      <field name="res_model">player</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="player_menu" name="Players" groups="group_player_user"/>
+    <menuitem id="player_menu_sub" name="Players" parent="player_menu" action="player_action" groups="group_player_user"/>
   </data>
 </odoo>

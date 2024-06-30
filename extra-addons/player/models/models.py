@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields
 
-class player(models.Model):
-    _name = 'player.player'
-    _description = 'player.player'
+class Player(models.Model):
+    _name = 'player'
+    _description = 'player model'
 
-    name = fields.Char()
-    value = fields.Integer()
-    value2 = fields.Float(compute="_value_pc", store=True)
-    description = fields.Text()
-
-    @api.depends('value')
-    def _value_pc(self):
-        for record in self:
-            record.value2 = float(record.value) / 100
-
+    name = fields.Char(string="Name", required=True)
+    image = fields.Binary(string="Image", attachment=True)
+    country = fields.Char(string="Country")
+    gender = fields.Selection(
+        [('male', 'Male'), ('female', 'Female')], string="Gender", default="male")
+    day_of_birth = fields.Datetime(string="Day of Birth")
+    position = fields.Char(string="Position")
+    height = fields.Float(string="Height")
+    weight = fields.Float(string="Weight")
