@@ -12,8 +12,8 @@ git submodule update
 
 - Requirement
 
-[pyenv](https://github.com/pyenv/pyenv)
-[nvm](https://github.com/nvm-sh/nvm)
+1. [pyenv](https://github.com/pyenv/pyenv)
+2. [nvm](https://github.com/nvm-sh/nvm)
 
 - install odoo dependencies
 
