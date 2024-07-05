@@ -46,7 +46,7 @@ python src/odoo-bin --dev=all --log-web --log-sql -c odoo.conf
 - create module
 
 ```shell
-python src/odoo-bin scaffold player1 extra-addons -t default
+python src/odoo-bin scaffold player extra-addons -t default
 ```
 
 ## Run odoo from docker
