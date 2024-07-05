@@ -1,4 +1,20 @@
 services:
+  web:
+    image: odoo:17
+    restart: unless-stopped
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo_data:/var/lib/odoo
+      - ./extra-addons:/mnt/extra-addons
+    environment:
+      - HOST=database
+      - PORT=5432
+      - USER=odoo_user
+      - PASSWORD=odoo_password
+    depends_on:
+      - database
+
   database:
     image: postgres:16.2
     restart: unless-stopped
@@ -9,7 +25,8 @@ services:
       - POSTGRES_PASSWORD=odoo_password
       - POSTGRES_DB=postgres
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - odoo_db_data:/var/lib/postgresql/data
 
 volumes:
-  db_data:
+  odoo_db_data:
+  odoo_data:

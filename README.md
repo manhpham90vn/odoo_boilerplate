@@ -1,6 +1,7 @@
 # Odoo 17
 
-## Update src odoo
+## Run odoo from src
+### Update src odoo
 
 ```shell
 git submodule init
@@ -25,12 +26,12 @@ sudo apt install -y /tmp/wkhtmltox_0.12.6.1-3.jammy_amd64.deb
 pip install inotify
 ```
 
-### Run odoo
+### Run odoo from source
 
 - run database, setup env and install requirements
 
 ```shell
-docker-compose up -d
+docker-compose up database -d
 python -m venv venv
 source ./venv/bin/activate
 pip install -r src/requirements.txt
@@ -46,4 +47,10 @@ python src/odoo-bin --dev=all --log-web --log-sql -c odoo.conf
 
 ```shell
 python src/odoo-bin scaffold player1 extra-addons -t default
+```
+
+## Run odoo from docker
+
+```shell
+docker-compose up -d
 ```
