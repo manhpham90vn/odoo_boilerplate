@@ -23,7 +23,6 @@ sudo ./src/setup/debinstall.sh
 sudo npm install -g rtlcss
 wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.jammy_amd64.deb -P /tmp
 sudo apt install -y /tmp/wkhtmltox_0.12.6.1-3.jammy_amd64.deb
-pip install inotify
 ```
 
 ### Run odoo from source
@@ -35,6 +34,7 @@ docker-compose up database -d
 python -m venv venv
 source ./venv/bin/activate
 pip install -r src/requirements.txt
+pip install inotify
 ```
 
 - run odoo
