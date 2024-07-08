@@ -1,5 +1,7 @@
 # Odoo 17
 
+- url: <http://localhost:8069/web?debug=1>
+
 ## Run odoo from src
 ### Update src odoo
 
@@ -20,7 +22,7 @@ git submodule update
 ```shell
 sudo apt install postgresql postgresql-client libpq-dev
 sudo ./src/setup/debinstall.sh
-sudo npm install -g rtlcss
+npm install -g rtlcss
 wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.jammy_amd64.deb -P /tmp
 sudo apt install -y /tmp/wkhtmltox_0.12.6.1-3.jammy_amd64.deb
 ```
