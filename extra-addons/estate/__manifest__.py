@@ -25,7 +25,8 @@ Long description of module's purpose
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
-        'data/estate.property.csv',
+        'data/estate.property.type.csv',
+        'data/estate.property.tag.csv',
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -35,4 +36,3 @@ Long description of module's purpose
     'application': True,
     'auto_install': True
 }
-
