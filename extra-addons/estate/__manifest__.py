@@ -33,5 +33,6 @@ Long description of module's purpose
     ],
     'installable': True,
     'application': True,
+    'auto_install': True
 }
 
