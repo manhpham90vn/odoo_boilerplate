@@ -8,14 +8,14 @@ services:
       - odoo_data:/var/lib/odoo
       - ./extra-addons:/mnt/extra-addons
     environment:
-      - HOST=database
+      - HOST=postgres
       - PORT=5432
       - USER=odoo_user
       - PASSWORD=odoo_password
     depends_on:
-      - database
+      - postgres
 
-  database:
+  postgres:
     image: postgres:16.2
     restart: unless-stopped
     ports:
@@ -25,8 +25,23 @@ services:
       - POSTGRES_PASSWORD=odoo_password
       - POSTGRES_DB=postgres
     volumes:
-      - odoo_db_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres
 
 volumes:
-  odoo_db_data:
   odoo_data:
+  postgres_data:
+  pgadmin_data:
