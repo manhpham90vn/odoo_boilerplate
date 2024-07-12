@@ -1,7 +1,7 @@
 services:
   odoo:
     image: odoo:17
-    container_name: odoo_17_odoo
+    container_name: odoo_odoo
     restart: unless-stopped
     ports:
       - "8069:8069"
@@ -13,12 +13,14 @@ services:
       - PORT=5432
       - USER=odoo_user
       - PASSWORD=odoo_password
+    networks:
+      - odoo_network
     depends_on:
       - postgres
 
   postgres:
     image: postgres:16.2
-    container_name: odoo_17_postgres
+    container_name: odoo_postgres
     restart: unless-stopped
     ports:
       - "5432:5432"
@@ -26,12 +28,14 @@ services:
       - POSTGRES_USER=odoo_user
       - POSTGRES_PASSWORD=odoo_password
       - POSTGRES_DB=postgres
+    networks:
+      - odoo_network
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: odoo_17_pgadmin
+    container_name: odoo_pgadmin
     restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
@@ -40,6 +44,8 @@ services:
       - pgadmin_data:/var/lib/pgadmin
     ports:
       - "80:80"
+    networks:
+      - odoo_network
     depends_on:
       - postgres
 
@@ -47,3 +53,7 @@ volumes:
   odoo_data:
   postgres_data:
   pgadmin_data:
+
+networks:
+  odoo_network:
+    driver: bridge
