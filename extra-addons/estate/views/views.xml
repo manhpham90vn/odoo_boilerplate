@@ -22,6 +22,10 @@
             <field name="model">estate.property</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button name="on_status_cancel" string="Cancel" type="object"/>
+                        <button name="on_status_sold" string="Sold" type="object"/>
+                    </header>
                     <sheet>
                         <group>
                             <h1 style="width:100%">
@@ -32,6 +36,7 @@
                             <field name="tag_ids" widget="many2many_tags"/>
                             <group>
                                 <group>
+                                    <field name="state"/>
                                     <field name="property_type_id"/>
                                     <field name="postcode"/>
                                     <field name="date_availability"/>
@@ -55,7 +60,6 @@
                                         <field name="total_area" />
                                         <field name="garden_orientation"/>
                                         <field name="active"/>
-                                        <field name="state"/>
                                     </group>
                                 </page>
                                 <page string="Offers">
@@ -65,6 +69,8 @@
                                             <field name="partner_id"/>
                                             <field name="validity" />
                                             <field name="date_deadline" />
+                                            <button name="on_confirm" string="Confirm" type="object" class="oe_highlight" icon="fa-check"/>
+                                            <button name="on_cancel" string="Cancel" type="object" class="oe_highlight" icon="fa-ban"/>
                                             <field name="status"/>
                                         </tree>
                                     </field>
