@@ -46,6 +46,11 @@ class EStateProperty(models.Model):
             else:
                 raise UserError('You cannot sell a canceled property')
 
+    _sql_constraints = [
+        ('check_expected_price', 'CHECK(expected_price >= 0)', 'The expected price must be positive'),
+        ('check_selling_price', 'CHECK(selling_price >= 0)', 'The selling price must be positive'),
+    ]
+
     name = fields.Char(required=True)
     description = fields.Text()
     postcode = fields.Char()
@@ -82,12 +87,20 @@ class EStatePropertyType(models.Model):
     _name = 'estate.property.type'
     _description = 'Real Estate Property Type'
 
+    _sql_constraints = [
+        ('check_name_unique', 'UNIQUE(name)', 'The name of the property type must be unique'),
+    ]
+
     name = fields.Char(required=True)
 
 
 class EStatePropertyTag(models.Model):
     _name = 'estate.property.tag'
     _description = 'Real Estate Property Tag'
+
+    _sql_constraints = [
+        ('check_name_unique', 'UNIQUE(name)', 'The name of the property type must be unique'),
+    ]
 
     name = fields.Char(required=True)
 
@@ -111,6 +124,16 @@ class EStatePropertyOffer(models.Model):
     def _compute_date_deadline(self):
         for record in self:
             record.date_deadline = record.create_date or fields.Date.today() + timedelta(days=record.validity)
+
+    @api.constrains('price')
+    def _check_price(self):
+        for record in self:
+            if record.price < 0.9 * record.property_id.expected_price:
+                raise UserError('The price is too low')
+
+    _sql_constraints = [
+        ('check_price', 'CHECK(price >= 0)', 'The price must be positive'),
+    ]
 
     price = fields.Float(required=True)
     status = fields.Selection([('accepted', 'Accepted'), ('refused', 'Refused')], readonly=True)
