@@ -1,6 +1,7 @@
 services:
-  web:
+  odoo:
     image: odoo:17
+    container_name: odoo_17_odoo
     restart: unless-stopped
     ports:
       - "8069:8069"
@@ -17,6 +18,7 @@ services:
 
   postgres:
     image: postgres:16.2
+    container_name: odoo_17_postgres
     restart: unless-stopped
     ports:
       - "5432:5432"
@@ -29,7 +31,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: pgadmin
+    container_name: odoo_17_pgadmin
     restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
